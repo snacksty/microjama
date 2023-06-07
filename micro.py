@@ -1,5 +1,5 @@
 import RPi.GPIO as gpio
-import MFRC522 as mfrc
+import MFRC522
 import Keypad
 import sys
 import os
@@ -24,6 +24,7 @@ def setupAlert():
     gpio.setwarnings(False)
     gpio.setmode(gpio.BOARD)         # use PHYSICAL GPIO Numbering
     gpio.setup(buzzerPin, GPIO.OUT)   # set buzzerPin to OUTPUT mode
+    print("Loaded Alert Module!")
 
 def setupRgbLed():
     global pwmRed,pwmGreen,pwmBlue  
@@ -36,20 +37,33 @@ def setupRgbLed():
     pwmRed.start(0)      # set initial Duty Cycle to 0
     pwmGreen.start(0)
     pwmBlue.start(0)
+    print("Loaded RGB Led!")
 
 def setupKeypad():
-    pass
+    print("Loaded Keypad Module!")
 
 def setupRfid():
-    pass
+    print("Loaded RFID Module!")
+
+def setup():
+    setupKeypad()
+    setupRgbLed()
+    setupAlert()
+    setupRfid()
+
+    print("System initiatilizing..")
 
 def loop():
+    while(True):
+        pass
     pass
 
 def destroy():
     pass
 
-if __name__ = '__main__':
+if __name__ == '__main__':
+    setup()
+
     try:
         pass
     except:
