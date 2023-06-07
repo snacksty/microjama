@@ -23,7 +23,7 @@ colsPins = [19,15,13,11]
 def setupAlert():
     gpio.setwarnings(False)
     gpio.setmode(gpio.BOARD)         # use PHYSICAL GPIO Numbering
-    gpio.setup(buzzerPin, GPIO.OUT)   # set buzzerPin to OUTPUT mode
+    gpio.setup(buzzerPin, gpio.OUT)   # set buzzerPin to OUTPUT mode
     print("Loaded Alert Module!")
 
 def setupRgbLed():
