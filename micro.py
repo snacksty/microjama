@@ -5,6 +5,7 @@ import sys
 import os
 import time
 
+# Variable of configuration
 buzzerPin = 11 # sound pin
 rgbPins = [11, 12, 13] # rgb led pins
 mfrc = MFRC522.MFRC522() # RFID
@@ -20,6 +21,7 @@ rowsPins = [12,16,18,22]     #out pins
 colsPins = [19,15,13,11]
 
 
+# Initial setup functions
 def setupAlert():
     gpio.setwarnings(False)
     gpio.setmode(gpio.BOARD)         # use PHYSICAL GPIO Numbering
@@ -46,6 +48,7 @@ def setupRfid():
     print("Loaded RFID Module!")
 
 def setupAll():
+    gpio.setwarnings(False)
     setupKeypad()
     setupRgbLed()
     setupAlert()
@@ -53,11 +56,7 @@ def setupAll():
 
     print("System initiatilizing..")
 
-def loop():
-    while(True):
-        pass
-    pass
-
+# Destroy objects was used
 def destroyAll():
     destroyKeypad()
     destroyRgbLed()
@@ -82,11 +81,34 @@ def destroyAlert():
 def destroyRfid():
     cleanUp()
 
+# Features to run
+def getOptionFromKeys():
+    pass
+
+def loop():
+    while(True):
+        pass
+    pass 
+
 if __name__ == '__main__':
     setupAll()
 
     try:
-        pass
+        letter = ""
+        while(True):
+            print(
+                f"Hola! Elije que quieres hacer:\n",
+                f"  A -> Escanear un Tag RFID\n",
+                f"  B -> Introducir la clave desde Keypad\n",
+                f"\n>>{input(letter)}"
+            )
+
+            if (letter == 'A'):
+                print("Scanning...")
+            elif (letter == 'B'):
+                print("Write Password:")
+            else:
+                print("Esta opción no esta Activa!\n\n\n")
     except:
         pass
     finally:
