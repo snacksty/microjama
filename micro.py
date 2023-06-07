@@ -45,7 +45,7 @@ def setupKeypad():
 def setupRfid():
     print("Loaded RFID Module!")
 
-def setup():
+def setupAll():
     setupKeypad()
     setupRgbLed()
     setupAlert()
@@ -58,15 +58,36 @@ def loop():
         pass
     pass
 
-def destroy():
-    pass
+def destroyAll():
+    destroyKeypad()
+    destroyRgbLed()
+    destroyAlert()
+    destroyRfid()
+
+def cleanUp():
+    gpio.cleanup()
+
+def destroyKeypad():
+    cleanUp()
+
+def destroyRgbLed():
+    pwmRed.stop()
+    pwmGreen.stop()
+    pwmBlue.stop()
+    gpio.cleanup()
+
+def destroyAlert():
+    cleanUp()
+
+def destroyRfid():
+    cleanUp()
 
 if __name__ == '__main__':
-    setup()
+    setupAll()
 
     try:
         pass
     except:
         pass
     finally:
-        pass
+        destroyAll()
