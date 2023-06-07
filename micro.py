@@ -97,9 +97,9 @@ if __name__ == '__main__':
         letter = ""
         while(True):
             print(
-                f"Hola! Elije que quieres hacer:\n",
-                f"  A -> Escanear un Tag RFID\n",
-                f"  B -> Introducir la clave desde Keypad\n",
+                f"Hola! Elije que quieres hacer:\n"
+                f"  A -> Escanear un Tag RFID\n"
+                f"  B -> Introducir la clave desde Keypad\n"
                 f"\n>>{input(letter)}"
             )
 
