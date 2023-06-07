@@ -1,7 +1,46 @@
 import RPi.GPIO as gpio
 import MFRC522 as mfrc
+import Keypad
+import sys
+import os
+import time
 
-def setup():
+buzzerPin = 11 # sound pin
+rgbPins = [11, 12, 13] # rgb led pins
+mfrc = MFRC522.MFRC522() # RFID
+
+# Keypad
+rows = 4        # number of rows of the Keypad
+cols = 4        #number of columns of the Keypad
+keys =  [   '1','2','3','A',    #key code
+            '4','5','6','B',
+            '7','8','9','C',
+            '*','0','#','D'     ]
+rowsPins = [12,16,18,22]     #out pins
+colsPins = [19,15,13,11]
+
+
+def setupAlert():
+    gpio.setwarnings(False)
+    gpio.setmode(gpio.BOARD)         # use PHYSICAL GPIO Numbering
+    gpio.setup(buzzerPin, GPIO.OUT)   # set buzzerPin to OUTPUT mode
+
+def setupRgbLed():
+    global pwmRed,pwmGreen,pwmBlue  
+    gpio.setmode(gpio.BOARD)       # use PHYSICAL GPIO Numbering
+    gpio.setup(rgbPins, gpio.OUT)     # set RGBLED pins to OUTPUT mode
+    gpio.output(rgbPins, gpio.HIGH)   # make RGBLED pins output HIGH level
+    pwmRed = gpio.PWM(rgbPins[0], 2000)      # set PWM Frequence to 2kHz
+    pwmGreen = gpio.PWM(rgbPins[1], 2000)  # set PWM Frequence to 2kHz
+    pwmBlue = gpio.PWM(rgbPins[2], 2000)    # set PWM Frequence to 2kHz
+    pwmRed.start(0)      # set initial Duty Cycle to 0
+    pwmGreen.start(0)
+    pwmBlue.start(0)
+
+def setupKeypad():
+    pass
+
+def setupRfid():
     pass
 
 def loop():
