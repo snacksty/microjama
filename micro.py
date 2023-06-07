@@ -96,12 +96,10 @@ if __name__ == '__main__':
     try:
         letter = ""
         while(True):
-            print(
-                f"Hola! Elije que quieres hacer:\n"
-                f"  A -> Escanear un Tag RFID\n"
-                f"  B -> Introducir la clave desde Keypad\n"
-                f"\n>>{input(letter)}"
-            )
+            print("Hola!\nElije lo que quieres hacer:\n")
+            print("  A -> Escanear un Tag RFID\n")
+            print("  B -> Introducir la clave desde Keypad\n")
+            print(f"\n>>{input(letter)}")
 
             if (letter == 'A'):
                 print("Scanning...")
