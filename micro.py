@@ -45,6 +45,7 @@ def setupKeypad():
     print("Loaded Keypad Module!")
 
 def setupRfid():
+    mfrc = MFRC522.MFRC522()
     print("Loaded RFID Module!")
 
 def setupAll():
@@ -107,6 +108,7 @@ def scanTag():
         (status,TagType) = mfrc.MFRC522_Request(mfrc.PICC_REQIDL)
 		# If a card is found
         if status == mfrc.MI_OK:
+            setColor(0, 1, 0)
             print ("Card detected")
 			# Get the UID of the card
             (status,uid) = mfrc.MFRC522_Anticoll()				
@@ -118,6 +120,11 @@ def scanTag():
                     print ("MFRC522_SelectTag Failed!")
             break
     return (status, uid, TagType)
+
+def setColor(r,g,b):      # change duty cycle for three pins to r_val,g_val,b_val
+    pwmRed.ChangeDutyCycle(r)     # change pwmRed duty cycle to r_val
+    pwmGreen.ChangeDutyCycle(g)   
+    pwmBlue.ChangeDutyCycle(b)
 
 def loop():
     while(True):
@@ -148,10 +155,6 @@ if __name__ == '__main__':
 
                     if len(pasw) == 6:
                         break
-                
-
-
-
             else:
                 print("Esta opción no esta Activa!\n\n\n")
     except:
