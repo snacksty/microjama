@@ -92,7 +92,29 @@ def readFromKeypad():
     while(True):
         key = keypad.getKey()       #obtain the state of keys
         if(key != keypad.NULL):     #if there is key pressed, print its key code.
+            print (f"{key}", end="")
             break
+    return key
+
+def scanTag():
+    mfrc = MFRC522.MFRC522()
+	isScan = True
+	while isScan:
+		# Scan for cards    
+		(status,TagType) = mfrc.MFRC522_Request(mfrc.PICC_REQIDL)
+		# If a card is found
+		if status == mfrc.MI_OK:
+    		print ("Card detected")
+			# Get the UID of the card
+			(status,uid) = mfrc.MFRC522_Anticoll()				
+			# If we have the UID, continue
+			if status == mfrc.MI_OK:
+				print ("Card UID: "+ str(map(hex,uid)))
+				# Select the scanned tag
+				if mfrc.MFRC522_SelectTag(uid) == 0:
+					print ("MFRC522_SelectTag Failed!")
+				if cmdloop(uid) < 1 :
+					isScan = False
 
 def loop():
     while(True):
@@ -109,7 +131,7 @@ if __name__ == '__main__':
             print("  A -> Escanear un Tag RFID")
             print("  B -> Introducir la clave desde Keypad")
             print(">> ", end="")
-            letter = input()
+            letter = readFromKeypad()
             
 
             if (letter == "A"):

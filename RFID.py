@@ -46,8 +46,8 @@ def loop():
 					# Select the scanned tag
 					if mfrc.MFRC522_SelectTag(uid) == 0:
 						print ("MFRC522_SelectTag Failed!")
-					if cmdloop(uid) < 1 :
-						isScan = False
+					#if cmdloop(uid) < 1 :
+					#	isScan = False
 			
 		elif inCmd == "quit":
 			destroy()
