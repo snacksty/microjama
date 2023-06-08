@@ -96,23 +96,24 @@ def readFromKeypad():
             break
     return key
 
+
 def scanTag():
     mfrc = MFRC522.MFRC522()
-	while True:
+    while(True):
 		# Scan for cards    
-		(status,TagType) = mfrc.MFRC522_Request(mfrc.PICC_REQIDL)
+        (status,TagType) = mfrc.MFRC522_Request(mfrc.PICC_REQIDL)
 		# If a card is found
-		if status == mfrc.MI_OK:
-    		print ("Card detected")
+        if status == mfrc.MI_OK:
+            print ("Card detected")
 			# Get the UID of the card
-			(status,uid) = mfrc.MFRC522_Anticoll()				
+            (status,uid) = mfrc.MFRC522_Anticoll()				
 			# If we have the UID, continue
-			if status == mfrc.MI_OK:
-				print ("Card UID: "+ str(map(hex,uid)))
+            if status == mfrc.MI_OK:
+                print ("Card UID: "+ str(map(hex,uid)))
 				# Select the scanned tag
-				if mfrc.MFRC522_SelectTag(uid) == 0:
-					print ("MFRC522_SelectTag Failed!")
-        break
+                if mfrc.MFRC522_SelectTag(uid) == 0:
+                    print ("MFRC522_SelectTag Failed!")
+            break
 
 
 def loop():
