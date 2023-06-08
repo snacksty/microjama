@@ -99,8 +99,9 @@ if __name__ == '__main__':
             print("\n\nHola!\nElije lo que quieres hacer:")
             print("  A -> Escanear un Tag RFID")
             print("  B -> Introducir la clave desde Keypad")
-            print(f">>{letter = input()}")
-            #letter = input()
+            print(">> ", end="")
+            letter = input()
+            
 
             if (letter == "A"):
                 print("Scanning...")
