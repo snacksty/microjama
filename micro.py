@@ -85,6 +85,15 @@ def destroyRfid():
 def getOptionFromKeys():
     pass
 
+def readFromKeypad():
+    keypad = Keypad.Keypad(keys,rowsPins,colsPins,rows,cols)    #creat Keypad object
+    keypad.setDebounceTime(50)      #set the debounce time
+    key = ""
+    while(True):
+        key = keypad.getKey()       #obtain the state of keys
+        if(key != keypad.NULL):     #if there is key pressed, print its key code.
+            break
+
 def loop():
     while(True):
         pass
@@ -106,7 +115,10 @@ if __name__ == '__main__':
             if (letter == "A"):
                 print("Scanning...")
             elif (letter == "B"):
-                print("Write Password:")
+                print("Write Password: ", end="")
+                passw = input()
+
+
             else:
                 print("Esta opción no esta Activa!\n\n\n")
     except:
