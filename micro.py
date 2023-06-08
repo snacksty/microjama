@@ -113,8 +113,7 @@ def scanTag():
 				# Select the scanned tag
 				if mfrc.MFRC522_SelectTag(uid) == 0:
 					print ("MFRC522_SelectTag Failed!")
-				if cmdloop(uid) < 1 :
-					isScan = False
+
 
 def loop():
     while(True):
@@ -136,6 +135,7 @@ if __name__ == '__main__':
 
             if (letter == "A"):
                 print("Scanning...")
+                scanTag()
             elif (letter == "B"):
                 print("Write Password: ", end="")
                 passw = input()
