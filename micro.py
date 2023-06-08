@@ -99,6 +99,9 @@ def readFromKeypad():
 
 def scanTag():
     mfrc = MFRC522.MFRC522()
+    status = ""
+    uid = ""
+    TagType = ""
     while(True):
 		# Scan for cards    
         (status,TagType) = mfrc.MFRC522_Request(mfrc.PICC_REQIDL)
@@ -114,7 +117,7 @@ def scanTag():
                 if mfrc.MFRC522_SelectTag(uid) == 0:
                     print ("MFRC522_SelectTag Failed!")
             break
-
+    return (status, uid, TagType)
 
 def loop():
     while(True):
@@ -135,11 +138,18 @@ if __name__ == '__main__':
             
 
             if (letter == "A"):
-                print("Scanning...")
-                scanTag()
+                print("\nScanning...")
+                (status, uid, TagType) = scanTag()
             elif (letter == "B"):
                 print("Write Password: ", end="")
-                passw = input()
+                pasw = ""
+                while(True):
+                    pasw += readFromKeypad()
+
+                    if len(pasw) == 6:
+                        break
+                
+
 
 
             else:
